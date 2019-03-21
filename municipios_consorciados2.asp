@@ -1,4 +1,4 @@
-Ôªø<!--#include file="conn.asp" -->
+<!--#include file="conn.asp" -->
 <%		
 	set Rst = Server.CreateObject("ADODB.RecordSet")	
 %>
@@ -183,7 +183,7 @@ body{
        
    	Rst.open "Select * From DadosMunicipios",GetConnectionSQL
 	Do While Not Rst.Eof
-        Municipio=Replace(Rst("Municipio"),"MUNIC√çPIO DE ","")
+        Municipio=Replace(Rst("Municipio"),"MUNICÕPIO DE ","")
         Municipio= "'" & lcase(Replace(unaccent(Municipio),chr(32),"")) &  "'"
         if Rst("LeiMunicipal")<>"" then LeiMunicipal = Rst("LeiMunicipal") Else LeiMunicipal=""
         
@@ -219,7 +219,7 @@ body{
              End If
   
        
-        NomeMunicipios = NomeMunicipios & Municipio & ":'" & Replace(Rst("Municipio"),"MUNIC√çPIO DE ","") & "',"
+        NomeMunicipios = NomeMunicipios & Municipio & ":'" & Replace(Rst("Municipio"),"MUNICÕPIO DE ","") & "',"
         coresMapa=coresMapa & Municipio & ":" & "'" & Cor & "',"
         LeiMunicipais=LeiMunicipais & Municipio & ":" & "'" & LeiMunicipal & "',"
                     
@@ -295,9 +295,9 @@ body{
                     //Tooltip onmouseover
                     onRegionTipShow: function (event, label, code) {
                         if (LeiMunicipais[code] != '') {
-                            if (showregiontip) label.html('<b>' + label.html() + '</b></br>' + "Lei Municipal n¬∫ " + LeiMunicipais[code]);
+                            if (showregiontip) label.html('<b>' + label.html() + '</b></br>' + "Lei Municipal n∫ " + LeiMunicipais[code]);
                         } else {
-                            if (showregiontip) label.html('<b>' + label.html() + '</b></br>' + "N√£o Consorciado");
+                            if (showregiontip) label.html('<b>' + label.html() + '</b></br>' + "N„o Consorciado");
                         }
 
                         showregiontip = true;
@@ -381,12 +381,12 @@ body{
                                
                                 horizontal: true,
                                 cssClass: 'jvectormap-legend-bg',
-                                title: 'Munic√≠pios',
+                                title: 'MunicÌpios',
                                 labelRender: function (v) {
                                     return {
                                         "verde": 'Consorciado',
-                                        "branco": 'N√£o Consorciado',
-                                        "vermelho": 'Sele√ß√£o',
+                                        "branco": 'N„o Consorciado',
+                                        "vermelho": 'SeleÁ„o',
                                         "verdeclaro" : 'Programa Concluido'
                                     }[v];
                                 }
@@ -537,14 +537,14 @@ body{
             function ResetRegions(Programa) {
 
                 if (Programa == 0) {
-                    document.getElementById("tituloMunicipios").innerHTML = "S√£o Munic√≠pios consorciados ao CIMCATARINA:";
-                    document.getElementById("inner1").innerHTML = "Munic√≠pios Consorciados: " + RetNumeroMunicipios(Programa);
+                    document.getElementById("tituloMunicipios").innerHTML = "S„o MunicÌpios consorciados ao CIMCATARINA:";
+                    document.getElementById("inner1").innerHTML = "MunicÌpios Consorciados: " + RetNumeroMunicipios(Programa);
                 } else if (Programa == 1) {
-                    document.getElementById("tituloMunicipios").innerHTML = "Participantes da Licita√ß√£o Compartilhada:";
-                    document.getElementById("inner1").innerHTML = "Participantes da Licita√ß√£o Compartilhada: " + RetNumeroMunicipios(Programa);
+                    document.getElementById("tituloMunicipios").innerHTML = "Participantes da LicitaÁ„o Compartilhada:";
+                    document.getElementById("inner1").innerHTML = "Participantes da LicitaÁ„o Compartilhada: " + RetNumeroMunicipios(Programa);
                 } else if (Programa == 2) {
-                    document.getElementById("tituloMunicipios").innerHTML = "Participantes da Ilumina√ß√£o P√∫blica:";
-                    document.getElementById("inner1").innerHTML = "Participantes da Ilumina√ß√£o P√∫blica: " + RetNumeroMunicipios(Programa);
+                    document.getElementById("tituloMunicipios").innerHTML = "Participantes da IluminaÁ„o P˙blica:";
+                    document.getElementById("inner1").innerHTML = "Participantes da IluminaÁ„o P˙blica: " + RetNumeroMunicipios(Programa);
                 } else if (Programa == 3) {
                     document.getElementById("tituloMunicipios").innerHTML = "Participantes do Plano Diretor: ";
                     document.getElementById("inner1").innerHTML = "Participantes do Plano Diretor: " + RetNumeroMunicipios(Programa);
@@ -552,8 +552,8 @@ body{
                     document.getElementById("tituloMunicipios").innerHTML = "Participantes da Mobilidade Urbana: ";
                     document.getElementById("inner1").innerHTML = "Participantes da Mobilidade Urbana: " + RetNumeroMunicipios(Programa);
                 } else if (Programa == 5) {
-                    document.getElementById("tituloMunicipios").innerHTML = "Participantes do Diagn√≥stico Socioambiental: ";
-                    document.getElementById("inner1").innerHTML = "Participantes do  Diagn√≥stico Socioambiental: " + RetNumeroMunicipios(Programa);
+                    document.getElementById("tituloMunicipios").innerHTML = "Participantes do DiagnÛstico Socioambiental: ";
+                    document.getElementById("inner1").innerHTML = "Participantes do  DiagnÛstico Socioambiental: " + RetNumeroMunicipios(Programa);
                 }
 
                 if (Programa == 99) {
@@ -598,7 +598,7 @@ body{
                 for (region in regions) { // only interested in a subset of countries    
                     Object.keys(Programa).forEach(function (key) {
                         if (key == region) {
-                            document.getElementById("municipios").innerHTML += "<div title='Lei Municipal n¬∫ " + LeiMunicipais[region] + "' onclick=HighlightRegion('" + region + "'); style='display:inline-block;width:100%;padding:5 0 5 0;cursor:pointer'><a onclick=HighlightRegion('" + region + "');return false>" + NomesMunicipios[region] + "</a></div>";
+                            document.getElementById("municipios").innerHTML += "<div title='Lei Municipal n∫ " + LeiMunicipais[region] + "' onclick=HighlightRegion('" + region + "'); style='display:inline-block;width:100%;padding:5 0 5 0;cursor:pointer'><a onclick=HighlightRegion('" + region + "');return false>" + NomesMunicipios[region] + "</a></div>";
                         }
                     });
                 };
@@ -625,7 +625,7 @@ body{
         <div class="divleft" style="width: 420px;">
 
             <div class="titulo" id="tituloMunicipios">
-                S√£o Munic√≠pios consorciados ao CIMCATARINA:
+                S„o MunicÌpios consorciados ao CIMCATARINA:
             </div>
 
             <div id="municipios" style="overflow: auto; width: 400px; height: 35vh; padding: 0px; margin-bottom: 10px;">
@@ -633,8 +633,8 @@ body{
 
             <div style="margin-bottom: 10px; display: none">
                 <div style="padding-top: 10px">
-                    <label for="SaveSelection">Guardar sele√ß√£o?</label><input id="SaveSelection" type="checkbox" />
-                    <label for="AddMarkers">Sele√ß√£o com marcador?</label><input id="AddMarkers" type="checkbox" />
+                    <label for="SaveSelection">Guardar seleÁ„o?</label><input id="SaveSelection" type="checkbox" />
+                    <label for="AddMarkers">SeleÁ„o com marcador?</label><input id="AddMarkers" type="checkbox" />
                     <label for="CorMarcador">Cor do marcador:</label><input type='text' id="CorMarcador" />
                 </div>
             </div>
@@ -643,11 +643,11 @@ body{
 
         <div class="divright" style="width: 560px;">
             <div class="titulo">
-                Poss√≠veis munic√≠pios a integrarem o CIMCATARINA:<br>
+                PossÌveis municÌpios a integrarem o CIMCATARINA:<br>
             </div>
             <ul>
-                <li>TODOS OS MUNIC√çPIOS DO ESTADO DE SANTA CATARINA.</li>
-                <li><a href="/upload-images/docs/Munic√≠pios/Modelos Ades√£o CIMCATARINA-n.doc" target="_blank">&#8203;Minuta do Projeto de Lei para ades√£o ao CIMCATARINA.</a></li>
+                <li>TODOS OS MUNICÕPIOS DO ESTADO DE SANTA CATARINA.</li>
+                <li><a href="/upload-images/docs/MunicÌpios/Modelos Ades„o CIMCATARINA-n.doc" target="_blank">&#8203;Minuta do Projeto de Lei para ades„o ao CIMCATARINA.</a></li>
             </ul>
         </div>
 
@@ -656,11 +656,11 @@ body{
         <div name="button" style="margin-top: 0px; margin-bottom: 0px; width: 1080px;">
 
             <a class="btn" id="Consorciados" onclick="ResetRegions(0);return false" href="#">Consorciados</a>
-            <a class="btn" id="LicitacaoCompartilhada" onclick="ResetRegions(1);return false" href="#">Licita√ß√£o Compartilhada</a>
-            <a class="btn" id="IluminacaoPublica" onclick="ResetRegions(2);return false" href="#">Ilumina√ß√£o P√∫blica</a>
+            <a class="btn" id="LicitacaoCompartilhada" onclick="ResetRegions(1);return false" href="#">LicitaÁ„o Compartilhada</a>
+            <a class="btn" id="IluminacaoPublica" onclick="ResetRegions(2);return false" href="#">IluminaÁ„o P˙blica</a>
             <a class="btn" id="PlanoDiretor" onclick="ResetRegions(3);return false" href="#">Plano Diretor</a>
             <a class="btn" id="MobilidadeUrbana" onclick="ResetRegions(4);return false" href="#">Mobilidade Urbana</a>
-            <a class="btn" id="DiagnosticoSocioAmbiental" onclick="ResetRegions(5);return false" href="#">Diagn√≥stico Socioambiental</a>
+            <a class="btn" id="DiagnosticoSocioAmbiental" onclick="ResetRegions(5);return false" href="#">DiagnÛstico Socioambiental</a>
 
         </div>
 
@@ -678,7 +678,7 @@ body{
                     <img src="images/RosaDosVentos.png" style="width: 75px" />
                 </div>
                 <div id="inner1">
-                    Munic√≠pios Consorciados: <%=TotalMunicipios %>
+                    MunicÌpios Consorciados: <%=TotalMunicipios %>
                     
                 </div>
             </div>
